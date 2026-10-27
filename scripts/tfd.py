@@ -727,16 +727,8 @@ def edge_svg(e, nodes, pal, opts):
     out = [f'<path d="{path_d(pts)}" fill="none" stroke="{pal["edge"]}" '
            f'stroke-width="{num(opts["edge_width"])}" stroke-linecap="round" '
            f'stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>']
-    if e.label and opts.get("edge_labels"):
-        lx, ly = longest_segment_mid(pts)
-        fs = e.fs or opts["edge_fs"]
-        tw = text_width(e.label, fs) + 8
-        out.append(f'<rect x="{num(lx - tw / 2)}" y="{num(ly - fs * 0.72)}" '
-                   f'width="{num(tw)}" height="{num(fs * 1.4)}" fill="{pal["bg"]}"/>')
-        out.append(f'<text x="{num(lx)}" y="{num(ly + fs * 0.35)}" '
-                   f'font-size="{num(fs)}" fill="{pal["text"]}" '
-                   f'text-anchor="middle" font-family="{FONT_STACK}">'
-                   f'{esc(e.label)}</text>')
+    # 教材体例的 TFD 连线上从不写字。这里不是"默认关闭"，而是根本没有这条渲染路径：
+    # spec 里写了 edge.label 或 edge_labels 也只会被忽略并告警，任何调用方都无法开启。
     return "".join(out)
 
 
@@ -1260,6 +1252,15 @@ def build(spec, opts_override=None):
             opts[k] = spec[k]
     if opts_override:
         opts.update({k: v for k, v in opts_override.items() if v is not None})
+
+    # 硬约束：TFD 连线上不写文字，不提供任何开启方式（写了也忽略，并明确告警）
+    if opts.get("edge_labels") or spec.get("edge_labels"):
+        WARNINGS.append("连线上不写文字（教材 TFD 惯例）：已忽略 edge_labels 设置")
+    opts["edge_labels"] = False
+    for _e in (spec.get("edges") or []):
+        if _e.get("label") or _e.get("l"):
+            WARNINGS.append("连线 %s→%s 的 label 已忽略：TFD 连线不带文字标注"
+                            % (_e.get("from"), _e.get("to")))
     theme = opts["theme"] if opts["theme"] in PALETTE else "textbook"
     pal = PALETTE[theme]
     global DOC_STYLE

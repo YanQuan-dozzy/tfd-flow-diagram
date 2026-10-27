@@ -6,14 +6,14 @@
 
 | 字段 | 类型 | 默认 | 说明 |
 |---|---|---|---|
-| `title` | str | — | 图名。**默认不渲染**——图名写在回复正文里；需要内嵌时配合 `show_title: true` |
-| `show_title` | bool | `false` | 是否把 `title`/`subtitle`/`note` 画进图里 |
-| `subtitle` | str | — | 副标题/说明行。同样只在 `show_title: true` 时渲染 |
-| `note` | str | — | 页脚注。同样只在 `show_title: true` 时渲染 |
+| `title` | str | — | 图名。**不要内嵌**——图名写在回复正文第一行；仅在用户明确要求时才配合 `show_title: true` |
+| `show_title` | bool | `false` | 是否把 `title`/`subtitle`/`note` 画进图里。**默认关闭且不建议打开**（教材插图只有图形） |
+| `subtitle` | str | — | 副标题/说明行。只在 `show_title: true` 时渲染，教材体例不用 |
+| `note` | str | — | 页脚注。只在 `show_title: true` 时渲染，教材体例不用 |
 | `theme` | str | `textbook` | `textbook` 黑白线稿 / `soft` 浅色填充 |
-| `legend` | bool | `false` | 是否画底部图例。教材范例不带图例，默认关闭 |
+| `legend` | bool | `false` | 是否画底部图例。教材范例不带图例，**保持关闭** |
 | `legend_flow` | bool | `false` | 追加第 6 项"业务流向（块状空心箭头）" |
-| `edge_labels` | bool | `false` | 是否渲染连线上文字；教材范例一律没有 |
+| `edge_labels` | bool | `false` | **已移除，无效**。连线文字在渲染器中已无对应代码路径，设为 `true` 只会被忽略并告警 |
 | `doc_style` | str | `wave` | `wave` 波浪底边（样本画法）/ `fold` 折角纸张 |
 | `unit_shape` | str | `auto` | `auto` 短标签正圆、长标签椭圆 / `circle` 全用正圆 / `ellipse` 全用椭圆 |
 | `direction` | str | `LR` | 仅在未给 `col`/`row` 时生效：`LR` 横排 / `TB` 竖排 |
@@ -61,7 +61,7 @@
 |---|---|---|---|
 | `from` | `src` `a` | 必填 | 起点节点 id |
 | `to` | `dst` `b` | 必填 | 终点节点 id |
-| `label` | `l` | — | 线上文字。**默认不渲染**（教材 TFD 连线上无文字），需要时配合 `edge_labels: true` |
+| `label` | `l` | — | **已废弃，不渲染**。TFD 连线上从不写文字（教材范例全程如此），写了会被丢弃并在 stderr 告警 |
 | `fromSide` | `fs` | 自动 | `top`/`bottom`/`left`/`right`（可写 `t`/`b`/`l`/`r`） |
 | `toSide` | `ts` | 自动 | 同上 |
 | `at0` `at1` | — | 自动 | 0–1，锚点在该边上的位置；同一侧多条箭头脚本会自动分散成 0.33/0.67… |

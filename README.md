@@ -65,7 +65,7 @@ python scripts/tfd.py spec.json -o out.svg \
 
 - `col` / `row` 为整数网格坐标：同一行 = 一条主线，同一列 = 上下串联。
 - 连线一般无需指定方向，引擎自动选边并分散落点；特殊需求可加 `fromSide` / `toSide` / `bend` / `via`。
-- 默认不渲染标题、图例与线上文字（教材插图只有图形本身），可用 `"show_title": true` / `"legend": true` / `"edge_labels": true` 打开。
+- 默认不渲染标题、图例与连线文字（教材插图只有图形本身）。标题 / 图例可用 `"show_title": true` / `"legend": true` 打开；**连线文字没有开启方式**——TFD 连线上从不写字，`edge.label` 写了也会被丢弃并告警。
 
 完整字段见 [`references/spec.md`](references/spec.md)。
 
