@@ -1,0 +1,120 @@
+{
+  "title": "材料入库业务流程图",
+  "theme": "textbook",
+  "hgap": 46,
+  "vgap": 40,
+  "nodes": [
+    {
+      "id": "buyer",
+      "type": "unit",
+      "label": "采购员",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "order",
+      "type": "doc",
+      "label": "入库单",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "ofile",
+      "type": "store",
+      "label": "订货单文件",
+      "col": -1,
+      "row": 2
+    },
+    {
+      "id": "check",
+      "type": "proc",
+      "label": "复核",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "keeper1",
+      "type": "unit",
+      "label": "库工",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "valid",
+      "type": "doc",
+      "label": "合法入库单",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "accept",
+      "type": "proc",
+      "label": "材料入库验收",
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "keeper2",
+      "type": "unit",
+      "label": "库工",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "receipt",
+      "type": "doc",
+      "label": "交库单",
+      "col": -2,
+      "row": 4
+    },
+    {
+      "id": "infile",
+      "type": "store",
+      "label": "入库文件",
+      "col": 0,
+      "row": 5
+    }
+  ],
+  "edges": [
+    {
+      "from": "buyer",
+      "to": "order"
+    },
+    {
+      "from": "order",
+      "to": "check"
+    },
+    {
+      "from": "ofile",
+      "to": "check"
+    },
+    {
+      "from": "keeper1",
+      "to": "check"
+    },
+    {
+      "from": "check",
+      "to": "valid"
+    },
+    {
+      "from": "valid",
+      "to": "accept"
+    },
+    {
+      "from": "keeper2",
+      "to": "accept"
+    },
+    {
+      "from": "accept",
+      "to": "receipt"
+    },
+    {
+      "from": "accept",
+      "to": "infile"
+    },
+    {
+      "from": "receipt",
+      "to": "buyer"
+    }
+  ]
+}

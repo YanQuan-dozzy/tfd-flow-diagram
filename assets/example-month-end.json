@@ -1,0 +1,142 @@
+{
+  "title": "月底结帐业务流程图",
+  "theme": "textbook",
+  "hgap": 52,
+  "vgap": 34,
+  "nodes": [
+    {
+      "id": "in_file",
+      "type": "store",
+      "label": "入库单文件",
+      "col": -1,
+      "row": 0
+    },
+    {
+      "id": "req_file",
+      "type": "store",
+      "label": "领料单文件",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "upd",
+      "type": "proc",
+      "label": "更新库存文件",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "acct",
+      "type": "unit",
+      "label": "会计",
+      "col": 1,
+      "row": 1
+    },
+    {
+      "id": "vault",
+      "type": "store",
+      "label": "库存文件",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "report",
+      "type": "proc",
+      "label": "编制统计报表",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "stat",
+      "type": "unit",
+      "label": "统计员",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "id": "stat_rpt",
+      "type": "doc",
+      "label": "库存统计报表",
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "audit",
+      "type": "proc",
+      "label": "审核",
+      "col": 0,
+      "row": 5
+    },
+    {
+      "id": "chief",
+      "type": "unit",
+      "label": "主任",
+      "col": 1,
+      "row": 5
+    },
+    {
+      "id": "audited",
+      "type": "doc",
+      "label": "已审核报表",
+      "col": 0,
+      "row": 6
+    },
+    {
+      "id": "depts",
+      "type": "unit",
+      "label": "有关部门",
+      "col": -1,
+      "row": 6
+    }
+  ],
+  "edges": [
+    {
+      "from": "in_file",
+      "to": "upd"
+    },
+    {
+      "from": "req_file",
+      "to": "upd"
+    },
+    {
+      "from": "acct",
+      "to": "upd"
+    },
+    {
+      "from": "upd",
+      "to": "vault"
+    },
+    {
+      "from": "vault",
+      "to": "upd"
+    },
+    {
+      "from": "vault",
+      "to": "report"
+    },
+    {
+      "from": "stat",
+      "to": "report"
+    },
+    {
+      "from": "report",
+      "to": "stat_rpt"
+    },
+    {
+      "from": "stat_rpt",
+      "to": "audit"
+    },
+    {
+      "from": "chief",
+      "to": "audit"
+    },
+    {
+      "from": "audit",
+      "to": "audited"
+    },
+    {
+      "from": "audited",
+      "to": "depts"
+    }
+  ]
+}

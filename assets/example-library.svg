@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1192" height="515.1" viewBox="0 0 1192 515.1" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs><marker id="tfd-arrow" viewBox="0 0 10 8" refX="9.2" refY="4" markerWidth="10" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#222222"/></marker></defs>
+<path d="M86,236.7 L86,81.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M136,50.6 L201,50.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M330,50.6 L387.5,50.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M483.5,50.6 L547.5,50.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M648.5,50.6 L711,50.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M812,50.6 L874.5,50.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M975.5,50.6 L1044.5,50.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M111.8,262.6 L222,262.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M270,243.6 L270,151.3 L385,151.3" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M440,175.3 L440,228.9" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M486,262.6 L541,262.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M602.5,238.6 L602.5,83.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M766,227.3 L766,179.3" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M719,151.3 L687,151.3 L687,276.0 L664,276.0" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M766,297.8 L766,340.8" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M813,368.8 L929.5,368.8 L929.5,290.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M929.5,75.3 L929.5,234.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M1106,69.6 L1106,234.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M1106,281.6 L1106,436.5" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M86,288.4 L86,431.5" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M483.5,464.5 L547.5,464.5" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M648.5,464.5 L711,464.5" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M812,464.5 L874.5,464.5" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M975.5,464.5 L1044.5,464.5" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M602.5,440.5 L602.5,295.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M146,464.5 L387.5,464.5" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M36,28.6 H136 V72.6 C122,60.9 100,60.9 86,72.6 C72,84.3 50,84.3 36,72.6 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="86" y="55.2" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">待借图书清单</text>
+<rect x="210" y="26.6" width="120" height="48" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="270" y="55.2" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">查看图书在线库存</text>
+<path d="M396.5,28.6 H483.5 V72.6 C471.3,60.9 452.2,60.9 440,72.6 C427.8,84.3 408.7,84.3 396.5,72.6 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="440" y="55.2" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">图书索引表</text>
+<rect x="556.5" y="26.6" width="92" height="48" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="602.5" y="55.2" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">借阅图书</text>
+<path d="M720,26.6 H812 V74.6 C799.1,62.7 778.9,62.7 766,74.6 C753.1,86.6 732.9,86.6 720,74.6 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="766" y="55.2" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">借书信息单</text>
+<rect x="883.5" y="26" width="92" height="49.3" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="929.5" y="46.9" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">借出处理</text><text x="929.5" y="63.5" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">并更新信息</text>
+<rect x="1053.5" y="31.6" width="105" height="38" fill="#ffffff" stroke="none"/><path d="M1158.5,31.6 H1053.5 V69.6 H1158.5" fill="none" stroke="#222222" stroke-width="1.6" stroke-linejoin="miter"/><path d="M1069.2,31.6 V69.6" fill="none" stroke="#222222" stroke-width="1.4"/>
+<text x="1113.9" y="55.2" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">图书借阅表</text>
+<path d="M394,127.3 H486 V175.3 C473.1,163.3 452.9,163.3 440,175.3 C427.1,187.2 406.9,187.2 394,175.3 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="440" y="155.8" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">账号申请单</text>
+<rect x="719" y="132.3" width="94" height="38" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="766" y="155.8" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">管理读者账号</text>
+<ellipse cx="86" cy="262.6" rx="25.8" ry="25.8" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="86" y="267.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">读者</text>
+<rect x="231" y="243.6" width="78" height="38" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="270" y="267.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">注册账号</text>
+<rect x="394" y="237.9" width="92" height="49.3" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="440" y="258.8" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">注册成功</text><text x="440" y="275.4" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">并更新信息</text>
+<rect x="550" y="238.6" width="105" height="48" fill="#ffffff" stroke="none"/><path d="M655,238.6 H550 V286.6 H655" fill="none" stroke="#222222" stroke-width="1.6" stroke-linejoin="miter"/><path d="M565.8,238.6 V286.6" fill="none" stroke="#222222" stroke-width="1.4"/>
+<text x="610.4" y="267.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">读者信息表</text>
+<ellipse cx="766" cy="262.6" rx="35.3" ry="35.3" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="766" y="258.8" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">图书</text><text x="766" y="275.4" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">管理员</text>
+<rect x="877" y="243.6" width="105" height="38" fill="#ffffff" stroke="none"/><path d="M982,243.6 H877 V281.6 H982" fill="none" stroke="#222222" stroke-width="1.6" stroke-linejoin="miter"/><path d="M892.8,243.6 V281.6" fill="none" stroke="#222222" stroke-width="1.4"/>
+<text x="937.4" y="267.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">图书信息表</text>
+<rect x="1046" y="243.6" width="120" height="38" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="1106" y="267.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">管理图书借阅记录</text>
+<rect x="719" y="349.8" width="94" height="38" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="766" y="373.4" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">管理图书信息</text>
+<rect x="26" y="440.5" width="120" height="48" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="86" y="469.0" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">查看在借图书记录</text>
+<path d="M396.5,442.5 H483.5 V486.5 C471.3,474.8 452.2,474.8 440,486.5 C427.8,498.2 408.7,498.2 396.5,486.5 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="440" y="469.0" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">借书信息单</text>
+<rect x="556.5" y="440.5" width="92" height="48" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="602.5" y="469.0" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">归还图书</text>
+<path d="M720,440.5 H812 V488.5 C799.1,476.5 778.9,476.5 766,488.5 C753.1,500.4 732.9,500.4 720,488.5 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="766" y="469.0" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">还书信息单</text>
+<rect x="883.5" y="439.8" width="92" height="49.3" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="929.5" y="460.7" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">归还处理</text><text x="929.5" y="477.3" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">并更新信息</text>
+<rect x="1053.5" y="445.5" width="105" height="38" fill="#ffffff" stroke="none"/><path d="M1158.5,445.5 H1053.5 V483.5 H1158.5" fill="none" stroke="#222222" stroke-width="1.6" stroke-linejoin="miter"/><path d="M1069.2,445.5 V483.5" fill="none" stroke="#222222" stroke-width="1.4"/>
+<text x="1113.9" y="469.0" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">图书借阅表</text>
+</svg>

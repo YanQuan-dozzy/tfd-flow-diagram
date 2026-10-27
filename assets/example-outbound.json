@@ -1,0 +1,133 @@
+{
+  "title": "材料出库业务流程图",
+  "theme": "textbook",
+  "hgap": 56,
+  "vgap": 34,
+  "nodes": [
+    {
+      "id": "asker",
+      "type": "unit",
+      "label": "领料人",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "slip",
+      "type": "doc",
+      "label": "领料单",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "check",
+      "type": "proc",
+      "label": "复核",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "keeper1",
+      "type": "unit",
+      "label": "库工",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "approved",
+      "type": "doc",
+      "label": "已批准领料单",
+      "col": 0,
+      "row": 3
+    },
+    {
+      "id": "out",
+      "type": "proc",
+      "label": "发料",
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "keeper2",
+      "type": "unit",
+      "label": "库工",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "id": "out_slip",
+      "type": "doc",
+      "label": "发料单",
+      "col": -1,
+      "row": 4
+    },
+    {
+      "id": "pick_file",
+      "type": "store",
+      "label": "领料单文件",
+      "col": -1,
+      "row": 5
+    }
+  ],
+  "edges": [
+    {
+      "from": "asker",
+      "to": "slip"
+    },
+    {
+      "from": "slip",
+      "to": "check"
+    },
+    {
+      "from": "keeper1",
+      "to": "check",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "from": "check",
+      "to": "approved"
+    },
+    {
+      "from": "approved",
+      "to": "out"
+    },
+    {
+      "from": "keeper2",
+      "to": "out",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "from": "out",
+      "to": "out_slip",
+      "fromSide": "left",
+      "toSide": "right",
+      "at0": 0.82,
+      "at1": 0.82
+    },
+    {
+      "from": "out",
+      "to": "asker",
+      "style": "block",
+      "fromSide": "left",
+      "toSide": "left",
+      "at1": 0.55,
+      "bend": 152,
+      "at0": 0.16
+    },
+    {
+      "from": "out",
+      "to": "pick_file",
+      "fromSide": "bottom",
+      "toSide": "right"
+    },
+    {
+      "from": "out_slip",
+      "to": "asker",
+      "fromSide": "left",
+      "toSide": "left",
+      "at1": 0.3,
+      "bend": 108
+    }
+  ]
+}

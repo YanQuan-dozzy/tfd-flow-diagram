@@ -1,0 +1,296 @@
+{
+  "title": "图书借阅业务流程图",
+  "theme": "textbook",
+  "max_node_w": 126,
+  "nodes": [
+    {
+      "id": "todo_list",
+      "type": "doc",
+      "label": "待借图书清单",
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "query",
+      "type": "proc",
+      "label": "查看图书在线库存",
+      "col": 1,
+      "row": 0
+    },
+    {
+      "id": "index",
+      "type": "doc",
+      "label": "图书索引表",
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "borrow",
+      "type": "proc",
+      "label": "借阅图书",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "id": "slip_out",
+      "type": "doc",
+      "label": "借书信息单",
+      "col": 4,
+      "row": 0
+    },
+    {
+      "id": "lend",
+      "type": "proc",
+      "label": "借出处理并更新信息",
+      "col": 5,
+      "row": 0
+    },
+    {
+      "id": "ledger_top",
+      "type": "store",
+      "label": "图书借阅表",
+      "col": 6,
+      "row": 0
+    },
+    {
+      "id": "apply",
+      "type": "doc",
+      "label": "账号申请单",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "mng_reader",
+      "type": "proc",
+      "label": "管理读者账号",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "id": "reader",
+      "type": "unit",
+      "label": "读者",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "id": "reg",
+      "type": "proc",
+      "label": "注册账号",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "reg_ok",
+      "type": "proc",
+      "label": "注册成功并更新信息",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "id": "reader_tbl",
+      "type": "store",
+      "label": "读者信息表",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "id": "admin",
+      "type": "unit",
+      "label": "图书管理员",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "id": "book_tbl",
+      "type": "store",
+      "label": "图书信息表",
+      "col": 5,
+      "row": 2
+    },
+    {
+      "id": "mng_ledger",
+      "type": "proc",
+      "label": "管理图书借阅记录",
+      "col": 6,
+      "row": 2
+    },
+    {
+      "id": "mng_book",
+      "type": "proc",
+      "label": "管理图书信息",
+      "col": 4,
+      "row": 3
+    },
+    {
+      "id": "view_log",
+      "type": "proc",
+      "label": "查看在借图书记录",
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "slip_read",
+      "type": "doc",
+      "label": "借书信息单",
+      "col": 2,
+      "row": 4
+    },
+    {
+      "id": "give_back",
+      "type": "proc",
+      "label": "归还图书",
+      "col": 3,
+      "row": 4
+    },
+    {
+      "id": "slip_back",
+      "type": "doc",
+      "label": "还书信息单",
+      "col": 4,
+      "row": 4
+    },
+    {
+      "id": "return_proc",
+      "type": "proc",
+      "label": "归还处理并更新信息",
+      "col": 5,
+      "row": 4
+    },
+    {
+      "id": "ledger_bot",
+      "type": "store",
+      "label": "图书借阅表",
+      "col": 6,
+      "row": 4
+    }
+  ],
+  "edges": [
+    {
+      "from": "reader",
+      "to": "todo_list",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "from": "todo_list",
+      "to": "query"
+    },
+    {
+      "from": "query",
+      "to": "index"
+    },
+    {
+      "from": "index",
+      "to": "borrow"
+    },
+    {
+      "from": "borrow",
+      "to": "slip_out"
+    },
+    {
+      "from": "slip_out",
+      "to": "lend"
+    },
+    {
+      "from": "lend",
+      "to": "ledger_top"
+    },
+    {
+      "from": "reader",
+      "to": "reg"
+    },
+    {
+      "from": "reg",
+      "to": "apply",
+      "fromSide": "top",
+      "toSide": "left"
+    },
+    {
+      "from": "apply",
+      "to": "reg_ok"
+    },
+    {
+      "from": "reg_ok",
+      "to": "reader_tbl"
+    },
+    {
+      "from": "reader_tbl",
+      "to": "borrow"
+    },
+    {
+      "from": "admin",
+      "to": "mng_reader",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "from": "mng_reader",
+      "to": "reader_tbl",
+      "fromSide": "left",
+      "toSide": "top"
+    },
+    {
+      "from": "admin",
+      "to": "mng_book",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "mng_book",
+      "to": "book_tbl",
+      "fromSide": "right",
+      "toSide": "bottom"
+    },
+    {
+      "from": "lend",
+      "to": "book_tbl",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "ledger_top",
+      "to": "mng_ledger",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "mng_ledger",
+      "to": "ledger_bot",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "reader",
+      "to": "view_log",
+      "fromSide": "bottom",
+      "toSide": "left"
+    },
+    {
+      "from": "slip_read",
+      "to": "give_back"
+    },
+    {
+      "from": "give_back",
+      "to": "slip_back"
+    },
+    {
+      "from": "slip_back",
+      "to": "return_proc"
+    },
+    {
+      "from": "return_proc",
+      "to": "ledger_bot"
+    },
+    {
+      "from": "give_back",
+      "to": "reader_tbl",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "from": "view_log",
+      "to": "slip_read"
+    }
+  ]
+}
