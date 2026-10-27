@@ -1,6 +1,8 @@
 # tfd-flow-diagram — 业务流程图（TFD）SVG 生成技能
 
-一个 [WorkBuddy](https://www.workbuddy.cn) Skill：把一段业务描述变成符合**国内管理信息系统教材体例**的业务流程图（TFD / Transaction Flow Diagram，又叫系统流程图、事务流程图），输出可直接插入文档 / PPT 的 SVG。
+一个开放格式的 **Agent Skill**（`SKILL.md` + 脚本 + 参考文档）：把一段业务描述变成符合**国内管理信息系统教材体例**的业务流程图（TFD / Transaction Flow Diagram，又叫系统流程图、事务流程图），输出可直接插入文档 / PPT 的 SVG。
+
+**不绑定任何平台**——只要你的 AI 助手支持 [Agent Skills](https://agentskills.io) 规范（或类似的 SKILL.md 技能机制）就能安装使用；也可以完全脱离 AI，直接当命令行工具用。
 
 ## 特性
 
@@ -13,23 +15,34 @@
   - 数据流（细箭头）与业务流向（空心块状箭头）
 - **网格布局 + 正交走线引擎**：列宽行高自适应、按列居中，自动选边、落点分散
 - **冲突自动规避**：线条不交叉、不共线重合、不穿框、不贴边；同侧多线时自动放大节点、加大间距
-- **零依赖**：纯 Python 标准库，无第三方包
+- **零依赖**：纯 Python 3 标准库，无第三方包，pip 都不用装
 
-## 安装到 WorkBuddy
+## 方式一：安装为 Agent Skill
 
-把整个 `tfd-flow-diagram/` 目录复制到：
+把整个 `tfd-flow-diagram/` 目录复制到你的 AI 助手的技能目录：
 
-```
-Windows:  C:\Users\<用户名>\.workbuddy\skills\
-```
+| 工具 | 用户级目录 |
+|---|---|
+| WorkBuddy | `~/.workbuddy/skills/`（Windows：`C:\Users\<用户名>\.workbuddy\skills\`） |
+| Claude Code | `~/.claude/skills/` |
+| 其他支持 SKILL.md 的工具 | 参见其文档中的 skills 目录约定 |
 
-重启会话后即可使用。触发语：「画业务流程图」「画 TFD」「把××业务画成流程图」。
+技能触发语：「画业务流程图」「画 TFD」「把××业务画成流程图」。
 
-## 命令行直接使用
+## 方式二：纯命令行使用（无需任何 AI）
 
 ```bash
+# 基本用法：输入 JSON 规格，输出 SVG
 python scripts/tfd.py spec.json -o out.svg
+
+# 可选参数
+python scripts/tfd.py spec.json -o out.svg \
+  --theme textbook     # textbook（默认，教材黑白）| soft（浅色填充）
+# --title "材料入库业务流程图"   覆盖标题
+# --no-legend                   不画图例
 ```
+
+要求：Python 3.8+，无任何第三方依赖。
 
 规格文件（JSON）示例：
 
@@ -67,12 +80,18 @@ python scripts/tfd.py spec.json -o out.svg
 | [月底结账](assets/example-month-end.svg) | 纵向 | 处理与台账读写成对双向箭头、横椭圆 |
 | [图书借阅](assets/example-library.svg) | 横向 | 多条主线并行（23 节点 / 26 条线） |
 
+快速试用：
+
+```bash
+python scripts/tfd.py assets/example-inbound.json -o /tmp/inbound.svg
+```
+
 ## 目录结构
 
 ```
 tfd-flow-diagram/
-├── SKILL.md              # 技能说明（WorkBuddy 读取）
-├── scripts/tfd.py        # 渲染器（纯标准库）
+├── SKILL.md              # 技能说明（Agent Skills 规范，各工具读取）
+├── scripts/tfd.py        # 渲染器（纯 Python 标准库）
 ├── references/
 │   ├── symbols.md        # 六类符号的语义、画法、常见误用
 │   ├── spec.md           # 规格字段全表
