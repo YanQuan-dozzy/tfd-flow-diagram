@@ -1,0 +1,32 @@
+{
+  "title": "采购付款审批业务流程图",
+  "theme": "textbook",
+  "hgap": 52,
+  "vgap": 46,
+  "nodes": [
+    { "id": "buyer",    "type": "unit",     "label": "采购员",     "col": 0,  "row": 0 },
+    { "id": "req",      "type": "doc",      "label": "付款申请单", "col": 0,  "row": 1 },
+    { "id": "contract", "type": "store",    "label": "合同文件",   "col": -1, "row": 2 },
+    { "id": "audit",    "type": "proc",     "label": "审核",       "col": 0,  "row": 2 },
+    { "id": "q1",       "type": "decision", "label": "审核通过?",  "col": 0,  "row": 3 },
+    { "id": "reject",   "type": "doc",      "label": "退回通知单", "col": -1, "row": 3 },
+    { "id": "q2",       "type": "decision", "label": "金额超限?",  "col": 0,  "row": 4 },
+    { "id": "chief",    "type": "proc",     "label": "主任审批",   "col": 1,  "row": 4 },
+    { "id": "pay",      "type": "proc",     "label": "出纳付款",   "col": 0,  "row": 5 },
+    { "id": "voucher",  "type": "doc",      "label": "付款凭证",   "col": 0,  "row": 6 },
+    { "id": "cashier",  "type": "unit",     "label": "会计",       "col": 0,  "row": 7 }
+  ],
+  "edges": [
+    { "from": "buyer",    "to": "req" },
+    { "from": "req",      "to": "audit" },
+    { "from": "contract", "to": "audit" },
+    { "from": "audit",    "to": "q1" },
+    { "from": "q1",       "to": "reject", "label": "否" },
+    { "from": "q1",       "to": "q2",     "label": "是" },
+    { "from": "q2",       "to": "chief",  "label": "是" },
+    { "from": "q2",       "to": "pay",    "label": "否" },
+    { "from": "chief",    "to": "pay" },
+    { "from": "pay",      "to": "voucher" },
+    { "from": "voucher",  "to": "cashier" }
+  ]
+}

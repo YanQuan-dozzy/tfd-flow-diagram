@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="471.2" height="826.7" viewBox="0 0 471.2 826.7" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs><marker id="tfd-arrow" viewBox="0 0 10 8" refX="9.2" refY="4" markerWidth="10" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#222222"/></marker></defs>
+<path d="M242.6,96.5 L242.6,133.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M242.6,190.6 L242.6,227.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M118,260.6 L187.6,260.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M242.6,284.6 L242.6,321.6" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M182,365.2 L124.5,365.2" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M242.6,399.8 L242.6,436.8" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M303.2,480.4 L358.2,480.4" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M242.6,515.0 L242.6,552.0" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M384.3,499.4 L384.3,585.0 L297.6,585.0" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M242.6,609.0 L242.6,646.0" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<path d="M242.6,703.0 L242.6,740.0" fill="none" stroke="#222222" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>
+<ellipse cx="242.6" cy="61.3" rx="35.3" ry="35.3" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="242.6" y="65.8" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">采购员</text>
+<path d="M196.6,142.6 H288.6 V190.6 C275.7,178.6 255.5,178.6 242.6,190.6 C229.7,202.5 209.5,202.5 196.6,190.6 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="242.6" y="171.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">付款申请单</text>
+<rect x="26" y="241.6" width="92" height="38" fill="#ffffff" stroke="none"/><path d="M118,241.6 H26 V279.6 H118" fill="none" stroke="#222222" stroke-width="1.6" stroke-linejoin="miter"/><path d="M39.8,241.6 V279.6" fill="none" stroke="#222222" stroke-width="1.4"/>
+<text x="78.9" y="265.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">合同文件</text>
+<rect x="196.6" y="236.6" width="92" height="48" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="242.6" y="265.1" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">审核</text>
+<polygon points="242.6,330.6 303.2,365.2 242.6,399.8 182,365.2" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="242.6" y="369.7" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">审核通过?</text>
+<path d="M28.5,343.2 H115.5 V387.2 C103.3,375.5 84.2,375.5 72,387.2 C59.8,398.9 40.7,398.9 28.5,387.2 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="72" y="369.7" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">退回通知单</text>
+<polygon points="242.6,445.8 303.2,480.4 242.6,515.0 182,480.4" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="miter"/>
+<text x="242.6" y="485.0" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">金额超限?</text>
+<rect x="367.2" y="461.4" width="78" height="38" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="406.2" y="485.0" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">主任审批</text>
+<rect x="196.6" y="561.0" width="92" height="48" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="242.6" y="589.6" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">出纳付款</text>
+<path d="M196.6,655.0 H288.6 V703.0 C275.7,691.1 255.5,691.1 242.6,703.0 C229.7,715.0 209.5,715.0 196.6,703.0 Z" fill="#ffffff" stroke="#222222" stroke-width="1.6" stroke-linejoin="round"/>
+<text x="242.6" y="683.6" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">付款凭证</text>
+<ellipse cx="242.6" cy="774.9" rx="25.8" ry="25.8" fill="#ffffff" stroke="#222222" stroke-width="1.6"/>
+<text x="242.6" y="779.4" font-size="13" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">会计</text>
+<rect x="141.1" y="347.2" width="18.0" height="15.0" rx="2.4" fill="#ffffff"/><text x="150.1" y="358.7" font-size="11" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">否</text>
+<rect x="223.1" y="416.2" width="18.0" height="15.0" rx="2.4" fill="#ffffff"/><text x="232.1" y="427.7" font-size="11" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">是</text>
+<rect x="326.1" y="462.5" width="18.0" height="15.0" rx="2.4" fill="#ffffff"/><text x="335.1" y="473.9" font-size="11" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">是</text>
+<rect x="223.1" y="531.5" width="18.0" height="15.0" rx="2.4" fill="#ffffff"/><text x="232.1" y="542.9" font-size="11" fill="#111111" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB','Noto Sans SC','Source Han Sans SC',sans-serif">否</text>
+</svg>

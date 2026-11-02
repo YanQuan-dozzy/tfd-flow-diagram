@@ -7,8 +7,10 @@
 
 设计要点:
   * 网格坐标系：节点用 (col,row) 摆放，脚本自动对齐行列 —— 手绘风格整齐的关键
-  * 五类 TFD 符号：unit(业务处理单位/部门) / proc(业务处理功能) /
-    doc(各类单证、报表) / store(数据存储、档案) / card(卡片、收集资料)
+  * 六类 TFD 符号：unit(业务处理单位/部门) / proc(业务处理功能) /
+    doc(各类单证、报表) / store(数据存储、档案) / card(卡片、收集资料) /
+    decision(判断/分支，菱形)
+  * 判断出口可带小字：是/否、成功/失败（只挂在判断节点的出线上）
   * 正交走线：按 fromSide / toSide 生成直角折线，箭头自动缩进贴边框
   * 全文纯标准库，无第三方依赖
 """
@@ -32,6 +34,10 @@ TYPE_ALIASES = {
     "store": "store", "storage": "store", "file": "store", "存储": "store",
     "数据存储": "store", "文档": "store", "档案": "store", "文件": "store",
     "card": "card", "卡片": "card", "收集资料": "card",
+    "decision": "decision", "judge": "decision", "condition": "decision",
+    "if": "decision", "branch": "decision", "diamond": "decision",
+    "判断": "decision", "判定": "decision", "判断框": "decision",
+    "分支": "decision", "菱形": "decision", "选择": "decision",
 }
 
 SIDE_ALIASES = {
@@ -49,13 +55,13 @@ PALETTE = {
         "bg": "#ffffff", "stroke": "#222222", "text": "#111111",
         "edge": "#222222", "muted": "#555555", "fold": "#ffffff",
         "fill": {"unit": "#ffffff", "proc": "#ffffff", "doc": "#ffffff",
-                 "store": "#ffffff", "card": "#ffffff"},
+                 "store": "#ffffff", "card": "#ffffff", "decision": "#ffffff"},
     },
     "soft": {
         "bg": "#ffffff", "stroke": "#33475b", "text": "#1f2328",
         "edge": "#3d4b5c", "muted": "#5a6b7c", "fold": "#f0dcbb",
         "fill": {"unit": "#e9f0fb", "proc": "#ffffff", "doc": "#fdf3e2",
-                 "store": "#e8f4ec", "card": "#f2eefb"},
+                 "store": "#e8f4ec", "card": "#f2eefb", "decision": "#f8f0e0"},
     },
 }
 
@@ -199,7 +205,7 @@ class Node(object):
         th = lh * len(self.lines)
 
         min_w = {"unit": 68.0, "proc": 78.0, "doc": 86.0, "store": 84.0,
-                 "card": 80.0}[self.type]
+                 "card": 80.0, "decision": 104.0}[self.type]
         if self.type == "unit":
             mode = str(defaults.get("unit_shape", "auto")).lower()
             if not (raw.get("w") or raw.get("h")):
@@ -222,6 +228,12 @@ class Node(object):
         elif self.type == "store":
             auto_w = tw + 2 * pad + 24          # 左格占掉的宽度也要算进来
             auto_h = th + 2 * pad + 2
+        elif self.type == "decision":
+            # 菱形：文字要落在内接矩形里，满足 tw/w + th/h ≤ 1，
+            # 取 1.75:1 的宽高比解出 w，再留一点余量。
+            tw2, th2 = tw + pad * 0.9, th + pad * 0.9
+            auto_w = (tw2 + 1.75 * th2) * 1.12
+            auto_h = auto_w / 1.75
         else:
             auto_w = tw + 2 * pad
             auto_h = th + 2 * pad
@@ -230,14 +242,18 @@ class Node(object):
         self.w = float(raw["w"]) if raw.get("w") else max(min_w, auto_w)
         self.h = float(raw["h"]) if raw.get("h") else max(
             {"unit": 44.0, "proc": 38.0, "doc": 44.0, "store": 38.0,
-             "card": 40.0}[self.type], auto_h)
+             "card": 40.0, "decision": 58.0}[self.type], auto_h)
+        if self.type == "decision" and self.w / max(1e-6, self.h) < 1.5:
+            # 太"胖"的菱形文字贴边，横向撑开一点
+            self.w = max(self.w, self.h * 1.5)
         self.x = self.y = 0.0
 
 
 class Edge(object):
     __slots__ = ("src", "dst", "label", "from_side", "to_side", "route",
                  "via", "bend", "at0", "at1", "fs", "at0_fixed", "at1_fixed",
-                 "s0", "s1", "style", "pts", "cs0", "cs1", "lane", "recip")
+                 "s0", "s1", "style", "pts", "cs0", "cs1", "lane", "recip",
+                 "show_label", "lat", "lside", "loff")
 
     def __init__(self, raw):
         if isinstance(raw, (list, tuple)):
@@ -257,6 +273,17 @@ class Edge(object):
         self.at0 = float(raw.get("at0", 0.5))
         self.at1 = float(raw.get("at1", 0.5))
         self.fs = float(raw.get("fs") or 0)
+        self.show_label = False
+        # 分支小字的位置：lat 沿线比例（0=起点），lside 侧向，loff 距线距离 px
+        self.lat = float(raw["lat"]) if raw.get("lat") is not None else None
+        side = str(raw.get("lside") or raw.get("lpos") or "auto").lower()
+        self.lside = {"left": "left", "l": "left", "左": "left",
+                      "right": "right", "r": "right", "右": "right",
+                      "above": "above", "up": "above", "top": "above", "上": "above",
+                      "below": "below", "down": "below", "bottom": "below",
+                      "下": "below", "on": "on", "中线": "on", "0": "on"}.get(
+                          side, "auto")
+        self.loff = float(raw["loff"]) if raw.get("loff") is not None else None
         self.style = str(raw.get("style") or raw.get("arrow") or "line").lower()
         self.s0 = self.from_side
         self.s1 = self.to_side
@@ -370,6 +397,14 @@ def anchor(n, side, at=0.5):
             d = (dx * dx + dy * dy) ** 0.5
             if d > 1e-6:
                 p = (cx + (p[0] - cx) / d, cy + (p[1] - cy) / d)
+    elif n.type == "decision":
+        # 菱形是 |dx|/rx + |dy|/ry = 1：沿射线按 L1 范数归一化，箭头才落在斜边上
+        cx, cy = n.x + n.w / 2.0, n.y + n.h / 2.0
+        rx, ry = max(1e-6, n.w / 2.0), max(1e-6, n.h / 2.0)
+        dx, dy = p[0] - cx, p[1] - cy
+        d = abs(dx) / rx + abs(dy) / ry
+        if d > 1e-6:
+            p = (cx + dx / d, cy + dy / d)
     return p
 
 
@@ -428,6 +463,12 @@ def shape_svg(n, pal, theme):
         d = (f'<path d="M{num(x + c)},{num(y)} H{num(x + w)} V{num(y + h)} '
              f'H{num(x)} V{num(y + c)} Z" fill="{fill}" stroke="{stroke}" '
              f'stroke-width="{num(sw)}" stroke-linejoin="round"/>')
+    elif n.type == "decision":
+        # 判断符号：菱形（四顶点压在行高中线上，与矩形节点同框对齐）
+        d = (f'<polygon points="{num(x + w / 2)},{num(y)} {num(x + w)},{num(y + h / 2)} '
+             f'{num(x + w / 2)},{num(y + h)} {num(x)},{num(y + h / 2)}" '
+             f'fill="{fill}" stroke="{stroke}" stroke-width="{num(sw)}" '
+             f'stroke-linejoin="miter"/>')
     else:
         rx = 0.0 if theme == "textbook" else 3.0
         rxs = f' rx="{num(rx)}" ry="{num(rx)}"' if rx else ""
@@ -597,6 +638,9 @@ def resolve_sides(edges, ids):
                 continue
             side = lst[0].s1 if at_field == "at1" else lst[0].s0
             horizontal = side in ("left", "right")
+            # 菱形的斜边会把落点往中间挤，多给一点幅度才能拉开两条支路
+            host = ids[lst[0].dst] if at_field == "at1" else ids[lst[0].src]
+            widen = 1.7 if host.type == "decision" else 1.0
 
             def sort_key(e):
                 ref = ids[e.src] if at_field == "at1" else ids[e.dst]
@@ -611,7 +655,10 @@ def resolve_sides(edges, ids):
             for e, w in zip(lst, weights):
                 acc += w
                 if not getattr(e, fixed_field):
-                    setattr(e, at_field, round(acc / total - w / total / 2.0, 3))
+                    val = acc / total - w / total / 2.0
+                    if widen != 1.0:
+                        val = min(0.9, max(0.1, 0.5 + (val - 0.5) * widen))
+                    setattr(e, at_field, round(val, 3))
 
     spread(lambda e: (e.dst, e.s1), "at1", "at1_fixed")
     spread(lambda e: (e.src, e.s0), "at0", "at0_fixed")
@@ -727,9 +774,138 @@ def edge_svg(e, nodes, pal, opts):
     out = [f'<path d="{path_d(pts)}" fill="none" stroke="{pal["edge"]}" '
            f'stroke-width="{num(opts["edge_width"])}" stroke-linecap="round" '
            f'stroke-linejoin="round" marker-end="url(#tfd-arrow)"/>']
-    # 教材体例的 TFD 连线上从不写字。这里不是"默认关闭"，而是根本没有这条渲染路径：
-    # spec 里写了 edge.label 或 edge_labels 也只会被忽略并告警，任何调用方都无法开启。
     return "".join(out)
+
+
+# ---------------------------------------------------------------- 分支小字
+# 判断节点的出口写"是/否""成功/失败"这类极短标注。普通连线上仍然不写字——
+# 这是 TFD 与通用流程图的区别所在，别把说明文字往处理之间的线上塞。
+
+def _path_at(pts, t):
+    """按路径长度比例取点，返回 (点, 所在段的单位方向)。"""
+    segs, total = [], 0.0
+    for i in range(len(pts) - 1):
+        L = ((pts[i + 1][0] - pts[i][0]) ** 2 +
+             (pts[i + 1][1] - pts[i][1]) ** 2) ** 0.5
+        if L > 1e-6:
+            segs.append((pts[i], pts[i + 1], L))
+            total += L
+    if not segs:
+        return pts[0], (1.0, 0.0)
+    target = total * max(0.0, min(1.0, t))
+    acc = 0.0
+    for p, q, L in segs:
+        if acc + L >= target - 1e-9:
+            k = (target - acc) / L
+            return ((p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k),
+                    ((q[0] - p[0]) / L, (q[1] - p[1]) / L))
+        acc += L
+    p, q, L = segs[-1]
+    return q, ((q[0] - p[0]) / L, (q[1] - p[1]) / L)
+
+
+def _label_box(c, text, fs):
+    w = text_width(text, fs) + fs * 0.64
+    h = fs * 1.36
+    return (c[0] - w / 2.0, c[1] - h / 2.0, w, h)
+
+
+def _box_node_hits(rect, nodes):
+    hits = 0
+    for n in nodes:
+        if (rect[0] < n.x + n.w - 1 and rect[0] + rect[2] > n.x + 1 and
+                rect[1] < n.y + n.h - 1 and rect[1] + rect[3] > n.y + 1):
+            hits += 1
+    return hits
+
+
+def _box_seg_hits(rect, segs):
+    """小字方框是否压到别的连线（压到线读起来就像线断了）。"""
+    x0, y0, w, h = rect
+    x1, y1 = x0 + w, y0 + h
+    hits = 0
+    for pts in segs:
+        for i in range(len(pts) - 1):
+            (ax, ay), (bx, by) = pts[i], pts[i + 1]
+            if abs(ay - by) < 0.5:                       # 水平段
+                if y0 < ay < y1 and min(ax, bx) < x1 and max(ax, bx) > x0:
+                    hits += 1
+            elif abs(ax - bx) < 0.5:                     # 垂直段
+                if x0 < ax < x1 and min(ay, by) < y1 and max(ay, by) > y0:
+                    hits += 1
+    return hits
+
+
+def _box_box_hits(rect, boxes):
+    hits = 0
+    for b in boxes:
+        if (rect[0] < b[0] + b[2] + 4 and rect[0] + rect[2] > b[0] - 4 and
+                rect[1] < b[1] + b[3] + 4 and rect[1] + rect[3] > b[1] - 4):
+            hits += 1
+    return hits
+
+
+def _path_len(pts):
+    return sum(((pts[i + 1][0] - pts[i][0]) ** 2 +
+                (pts[i + 1][1] - pts[i][1]) ** 2) ** 0.5
+               for i in range(len(pts) - 1))
+
+
+def place_edge_label(e, a, nodes, fs, others=(), taken=()):
+    """小字贴着出线的前段放：离判断框几步之内，避开节点、别的线、已经放下的小字。"""
+    pts = e.pts or []
+    if len(pts) < 2 or not e.label:
+        return None
+    off = e.loff if e.loff is not None else fs * 0.95
+    total = max(1e-6, _path_len(pts))
+    if e.lat is not None:
+        t_list = [max(0.0, min(1.0, e.lat))]
+    else:
+        # 按"离判断框多远"来放，长线段也不会把小字甩到半路
+        d0 = min(fs * 2.9, total * 0.52)
+        t_list = [d0 / total, d0 * 1.7 / total, d0 * 0.6 / total,
+                  min(0.86, d0 * 2.6 / total)]
+    best = None
+    for t in t_list:
+        pt, (ux, uy) = _path_at(pts, t)
+        if abs(ux) < 0.5:                      # 竖直段：往左右让
+            sides = [((-off, 0.0), "left"), ((off, 0.0), "right")]
+        else:                                   # 水平段：往上下让
+            sides = [((0.0, -off), "above"), ((0.0, off), "below")]
+        if e.lside == "on":
+            sides = [((0.0, 0.0), "on")]
+        elif e.lside in ("left", "right", "above", "below"):
+            sides = [s for s in sides if s[1] == e.lside] or sides
+        for (dx, dy), _name in sides:
+            c = (pt[0] + dx, pt[1] + dy)
+            rect = _label_box(c, e.label, fs)
+            cost = _box_node_hits(rect, nodes) * 1000.0
+            cost += _box_seg_hits(rect, others) * 320.0
+            cost += _box_box_hits(rect, taken) * 260.0
+            cost += t * 10.0
+            if best is None or cost < best[0] - 0.01:
+                best = (cost, c, rect)
+        if best is not None and best[0] < 250.0:
+            break                              # 已经没压到节点和线，早点收工
+    return (best[1], best[2]) if best else None
+
+
+def edge_label_svg(e, ids, nodes, pal, opts, others=(), taken=()):
+    """返回 (svg, 小字方框)；调用方把方框收进 taken，后画的小字就会躲开它。"""
+    a = ids[e.src]
+    fs = e.fs or opts["edge_fs"]
+    got = place_edge_label(e, a, nodes, fs, others, taken)
+    if got is None:
+        return "", None
+    c, rect = got
+    w, h = text_width(e.label, fs) + fs * 0.64, fs * 1.36
+    svg = (f'<rect x="{num(c[0] - w / 2)}" y="{num(c[1] - h / 2)}" '
+           f'width="{num(w)}" height="{num(h)}" rx="{num(fs * 0.22)}" '
+           f'fill="{pal["bg"]}"/>'
+           f'<text x="{num(c[0])}" y="{num(c[1] + fs * 0.36)}" '
+           f'font-size="{num(fs)}" fill="{pal["text"]}" text-anchor="middle" '
+           f'font-family="{FONT_STACK}">{esc(e.label)}</text>')
+    return svg, rect
 
 
 # ---------------------------------------------------------------- 图例
@@ -832,7 +1008,11 @@ SW, SH, TEXTGAP, ITEMGAP = 46.0, 24.0, 10.0, 34.0
 def legend_plan(opts, max_w):
     """把图例排成若干行，返回 (行内容, 最大行宽, 总高)。"""
     fs = opts["fs"] * 0.82
-    base = LEGEND_ITEMS + (LEGEND_EXTRA if opts.get("legend_flow") else [])
+    base = list(LEGEND_ITEMS)
+    if opts.get("has_decision"):        # 只有图里真的用了判断菱形才补这一项
+        base.insert(1, ("decision", "判断/分支"))
+    if opts.get("legend_flow"):
+        base += LEGEND_EXTRA
     items = [(k, n, SW + TEXTGAP + text_width(n, fs) + ITEMGAP)
              for k, n in base]
     rows, cur, cur_w = [], [], 0.0
@@ -867,6 +1047,9 @@ def legend_svg(x0, y0, pal, opts, theme, rows, fs):
                         str(opts.get("unit_shape", "auto")).lower() != "ellipse":
                     # 单位符号在图上画正圆，图例也画正圆
                     mini = MiniNode(cx + (SW - SH) / 2, ry, SH, SH, kind)
+                elif kind == "decision":
+                    mini = MiniNode(cx + (SW - 34) / 2, ry + (SH - 27) / 2,
+                                    34, 27, kind)
                 else:
                     mini = MiniNode(cx, ry, SW, SH, kind)
                 parts.append(shape_svg(mini, pal, theme).replace(
@@ -1253,14 +1436,6 @@ def build(spec, opts_override=None):
     if opts_override:
         opts.update({k: v for k, v in opts_override.items() if v is not None})
 
-    # 硬约束：TFD 连线上不写文字，不提供任何开启方式（写了也忽略，并明确告警）
-    if opts.get("edge_labels") or spec.get("edge_labels"):
-        WARNINGS.append("连线上不写文字（教材 TFD 惯例）：已忽略 edge_labels 设置")
-    opts["edge_labels"] = False
-    for _e in (spec.get("edges") or []):
-        if _e.get("label") or _e.get("l"):
-            WARNINGS.append("连线 %s→%s 的 label 已忽略：TFD 连线不带文字标注"
-                            % (_e.get("from"), _e.get("to")))
     theme = opts["theme"] if opts["theme"] in PALETTE else "textbook"
     pal = PALETTE[theme]
     global DOC_STYLE
@@ -1287,6 +1462,33 @@ def build(spec, opts_override=None):
             raise ValueError("连线引用了不存在的节点: %s" % e.src)
         if e.dst not in ids:
             raise ValueError("连线引用了不存在的节点: %s" % e.dst)
+
+    # 分支小字只长在判断节点的出线上；其它连线仍然不写文字（教材 TFD 惯例）。
+    # 需要破例时写 edge_labels: true，但正常出图不要开。
+    allow_any = bool(opts.get("edge_labels"))
+    for e in edges:
+        if not e.label:
+            continue
+        if allow_any or ids[e.src].type == "decision":
+            e.show_label = True
+        else:
+            WARNINGS.append(
+                "连线 %s→%s 的 label「%s」已忽略：小字只写在判断节点的出口上"
+                % (e.src, e.dst, e.label))
+    for n in nodes:
+        if n.type != "decision":
+            continue
+        outs = [e for e in edges if e.src == n.id]
+        if len(outs) < 2:
+            WARNINGS.append("判断节点 %s 只有一个出口：判断应分出两条支路（是/否）"
+                            % n.id)
+        if len(str(n.label).replace("\n", "")) > 8:
+            WARNINGS.append("判断节点 %s 的文字偏长：菱形里只写短条件，"
+                            "如「库存充足?」「审核通过?」" % n.id)
+        for e in outs:
+            if not e.label and not allow_any:
+                WARNINGS.append("判断节点 %s → %s 缺出口小字（是/否、成功/失败）"
+                                % (n.id, e.dst))
 
     boost_for_congestion(nodes, edges, ids, opts)
 
@@ -1331,6 +1533,7 @@ def build(spec, opts_override=None):
 
     if any(e.style in ("block", "flow") for e in edges):
         opts["legend_flow"] = True      # 图上用了块状箭头，图例必须能解释它
+    opts["has_decision"] = any(n.type == "decision" for n in nodes)
     rows, legend_w, legend_h, legend_fs = [], 0.0, 0.0, opts["fs"] * 0.82
     if opts["legend"]:
         # 图例宽度不超过图形本身，超了就折成多行
@@ -1369,6 +1572,15 @@ def build(spec, opts_override=None):
     for n in nodes:
         svg.append(shape_svg(n, pal, theme))
         svg.append(text_svg(n, pal, opts["line_height"]))
+    # 分支小字最后画：压在线和框之上，永远不会被形状盖住
+    taken = []
+    for e in edges:
+        if e.show_label:
+            others = [f.pts for f in edges if f is not e and f.pts]
+            frag, rect = edge_label_svg(e, ids, nodes, pal, opts, others, taken)
+            if rect:
+                taken.append(rect)
+            svg.append(frag)
 
     if opts["legend"]:
         ly = bottom + 20
